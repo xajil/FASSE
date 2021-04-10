@@ -25,7 +25,7 @@
               	<?php
                   include 'library/configServer.php';
                   include 'library/consulSQL.php';
-                  $consulta= ejecutarSQL::consultar("SELECT * FROM producto WHERE Stock > 0 AND Estado='Activo' ORDER BY id DESC LIMIT 7");
+                  $consulta= ejecutarSQL::consultar("SELECT * FROM producto WHERE Stock > 0 ORDER BY id DESC LIMIT 10");
                   $totalproductos = mysqli_num_rows($consulta);
                   if($totalproductos>0){
                       while($fila=mysqli_fetch_array($consulta, MYSQLI_ASSOC)){
@@ -44,7 +44,7 @@
                              ?>
                              </p>
                              <?php else: ?>
-                              <p>$<?php echo $fila['Precio']; ?></p>
+                              <p>Q<?php echo $fila['Precio']; ?></p>
                              <?php endif; ?>
                         <p class="text-center">
                             <a href="infoProd.php?CodigoProd=<?php echo $fila['CodigoProd']; ?>" class="btn btn-primary btn-sm btn-raised btn-block"><i class="fa fa-plus"></i>&nbsp; Detalles</a>
