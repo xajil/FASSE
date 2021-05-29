@@ -19,13 +19,13 @@
          <div class="container">
             <div class="page-header">
             <h1 align="center">BIENVENIDO A TECNO SHOP</h1>
-                <h1>Últimos <small>productos agregados</small></h1>
+                <h1>Últimos 10<small> productos agregados</small></h1>
             </div>
             <div class="row">
               	<?php
                   include 'library/configServer.php';
                   include 'library/consulSQL.php';
-                  $consulta= ejecutarSQL::consultar("SELECT * FROM producto WHERE Stock > 0 ORDER BY id DESC LIMIT 10");
+                  $consulta= ejecutarSQL::consultar("SELECT * FROM producto WHERE Stock > 0 AND Estado='Activo' ORDER BY id DESC LIMIT 10");
                   $totalproductos = mysqli_num_rows($consulta);
                   if($totalproductos>0){
                       while($fila=mysqli_fetch_array($consulta, MYSQLI_ASSOC)){
@@ -40,7 +40,7 @@
                              <p>
                              <?php
                              $pref=number_format($fila['Precio']-($fila['Precio']*($fila['Descuento']/100)), 2, '.', '');
-                             echo $fila['Descuento']."% descuento: $".$pref; 
+                             echo $fila['Descuento']."% descuento: Q".$pref; 
                              ?>
                              </p>
                              <?php else: ?>
@@ -69,7 +69,7 @@
                         <p><i class="fa fa-users fa-4x"></i></p>
                         <h3>Registrate</h3>
                         <p>Registrate como cliente de <span class="tittles-pages-logo">TECNO SHOP</span> en un sencillo formulario para poder completar tus pedidos</p>
-                        <p><a href="#!" class="btn btn-info btn-raised btn-block">Registrarse</a></p>   
+                        <p><a href="registration.php" class="btn btn-info btn-raised btn-block">Registrarse</a></p>   
                    </article>
                 </div>
 
